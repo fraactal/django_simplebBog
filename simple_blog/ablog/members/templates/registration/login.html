@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} Login {% endblock %} 
+{% block content %}
+
+<h1> Login </h1>
+<br><br>
+
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+            {{ form.as_p }} <!-- toma todos los atributos del models  los deja en formato 'P' puede ser form.as_ul, form.as_table -->
+        <button class = "btn btn-outline-warning">Login</button>
+    </form>
+</div>
+
+{% endblock %}

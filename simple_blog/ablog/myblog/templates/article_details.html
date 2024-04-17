@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+<!-- Override Title content from base.html-->
+{% block title %} {{post.title_tag}} {% endblock %} 
+
+{% block content %}
+
+    <h1>{{post.title}} </h1>
+    <small>By: {{post.author.first_name}} {{post.author.last_name}} - {{post.post_date}} 
+        
+        {% if user.is_authenticated %}
+            - <a href="{% url 'update_post' post.pk %}"> Edit </a> | 
+            <a href="{% url 'delete_post' post.pk %}"> Delete</a>
+        {% endif %}
+
+    </small> <br/>
+    <hr>
+    <br/>
+    {{post.body|safe}} <!-- Safe para poder mostrar espacios en blanco si los parrafos tienen algun html-->
+
+    <br/><br/>
+    <!-- button href="{% url 'home' %}" type="button" class="btn btn-outline-secondary">Back</button -->
+
+    <a href="{% url 'home' %}" class="btn btn-outline-warning">Back</a >
+
+{% endblock %}
