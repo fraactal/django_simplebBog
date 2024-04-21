@@ -11,10 +11,6 @@ from .forms import PostForm, EditForm
 #def home(request):
     #return render(request, "paralax.html", {})
 
-class ParalaxView(CreateView):
-    model = Category
-    template_name = 'paralax.html'
-    fields = '__all__'
 
 class HomeView(ListView):
     model = Post
@@ -52,5 +48,5 @@ class AddCategoryView(CreateView):
     
 def CategoryView(request, cats):
     #query database -> atribute neds to be same as class model
-    category_post = Post.objects.filter(category=cats)
-    return render(request, 'categories.html', {'cats': cats.title(), 'category_posts':category_post })
+    category_post = Post.objects.filter(category=cats.replace('-',' '))
+    return render(request, 'categories.html', {'cats': cats.title().replace('-',' '), 'category_posts':category_post })
